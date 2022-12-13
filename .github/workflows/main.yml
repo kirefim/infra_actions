@@ -4,7 +4,6 @@ on: [push]
 
 jobs:
   tests:
-    # «Раннер» — создание изолированного окружения с последней версией Ubuntu 
     runs-on: ubuntu-latest
 
     steps:
@@ -12,8 +11,6 @@ jobs:
     # для клонирования репозитория
     - uses: actions/checkout@v3
     - name: Set up Python
-      # Запуск actions setup-python — готового скрипта 
-      # для развёртывания окружения Python
       uses: actions/setup-python@v4
       with:
         python-version: 3.7
@@ -27,3 +24,5 @@ jobs:
     - name: Test with flake8 and django tests
       run: |
         python -m flake8
+        cd infra_project/
+        python manage.py test
